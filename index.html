@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VR PAINTBALL</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+    <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+    <script src="./js/paint.js"></script>
+    <script src="./js/playerMovement.js"></script>
+</head>
+
+<body>
+    <a-scene id="scene" inspector-plugin-recast>
+        <a-assets>
+            <a-asset-item id="mesh" src="./assets/navmesh.gltf"></a-asset-item>
+
+            <a-asset-item id="shooter" src="./assets/gun.gltf"></a-asset-item>
+        
+            <audio id="splash" src="./assets/sounds/paintSplash.wav"></audio>
+            <audio id="footstep" src="./assets/sounds/footStep.mp3"></audio>
+
+        </a-assets>
+
+        <a-entity id="environment" environment="preset:osiris; skyType:gradient; lighting:ambient">
+        </a-entity>
+
+        <a-entity id="sound1" sound="src: #paintsplash; poolSize:2; autoplay: false; volume: 1;loop:false"></a-entity>
+        <a-entity id="sound2" sound="src: #footstep; poolSize:2;autoplay: false; volume: 4;loop:false"></a-entity>
+
+        <a-entity light="type: ambient; color: white; intensity:0.7"></a-entity>
+
+        <a-entity id="camera-rig" movement-controls="speed:0.2; constrainToNavMesh: true;" position="0 1 2">
+            <a-entity id="camera" camera position="0 1.5 0" wasd-controls="acceleration:250"
+                look-controls="pointerLockEnabled: false">
+                <a-entity id="weapon" gltf-model="#shooter" position="0 -4.4 3" rotation="0 180 0" scale="0.35 1 1"
+                    player-movement>
+                </a-entity>
+                <a-cursor></a-cursor>
+            </a-entity>
+        </a-entity>
+
+        <a-entity paintballs></a-entity>
+        <a-plane id="ground" repeat="5 5" position="0 1 0" rotation="-90 0 0" height="200" width="200" color="#FBF2D4"
+            static-body visible="true">
+        </a-plane>
+        <a-entity id="navigation-mesh" gltf-model="#mesh" visible="false" nav-mesh></a-entity>
+
+
+        <a-box id="wall1" position="-30 1.5 -30" color="#525E75" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall4" position=" 0 1.5 -20" color="#F1DDBF" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall5" position=" 10 1.5 -10" color="#78938A" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall6" position="20 1.5 -40" color="#92BA92" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall7" position=" 30 1.5 -50" color="#7D1E6A" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall8" position=" 40 1.5 -45" color="#BDE6F1" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall9" position="-30 1.5 -30" rotation="0 90 0" color="#525E75" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall10" position=" 0 1.5 -20" color="#F1DDBF" rotation="0 90 0" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall11" position=" 10 1.5 -10" color="#78938A" rotation="0 90 0" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall12" position="20 1.5 -40" color="#92BA92" rotation="0 90 0" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall13" position=" 30 1.5 -50" color="#7D1E6A" rotation="0 90 0" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+        <a-box id="wall14" position=" 40 1.5 -45" color="#BDE6F1" rotation="0 90 0" depth="0.1" height="10" width="45"
+            dynamic-body="mass:0"></a-box>
+
+
+    </a-scene>
+</body>
+
+</html>
